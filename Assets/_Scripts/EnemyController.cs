@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Enemy Controller
+/// Arlina Ramrattan
+/// 300799246
+/// Last Modified by: A.R.
+/// Date last modified: October 22, 2016
+/// This program is a 2D top down scroller. The plyer is a green tank and they have to try and avoid the red enemy tanks. They have 5 lives. 
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 [System.Serializable]
