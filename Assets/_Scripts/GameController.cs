@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour {
 	// PUBLIC INSTANCE VARIABLES
 	public int tankCount;
 	public GameObject tank;
+	public GameObject finalScore;
 
 	public Text LivesLbl;
 	public Text ScoreLbl;
@@ -62,7 +63,7 @@ public class GameController : MonoBehaviour {
 			this._livesValue = value;
 			//this.LivesLbl.text = "Lives: " + this._livesValue;
 			if (this._livesValue <= 0) {
-				//this.FinalScore = this.ScoreValue;
+				
 				this._endGame ();
 			} else {
 				this.LivesLbl.text = "Lives: " + this._livesValue;
@@ -88,6 +89,9 @@ public class GameController : MonoBehaviour {
 		
 		FinalScore = ScoreValue;
 		Debug.Log (FinalScore);
+		Instantiate (finalScore);
+
+
 		SceneManager.LoadScene ("End");
 	}
 
@@ -97,5 +101,8 @@ public class GameController : MonoBehaviour {
 		for (int count=0; count < this.tankCount; count++) {
 			Instantiate(tank);
 		}
+	}
+	void Awake(){
+		DontDestroyOnLoad(finalScore);
 	}
 }
