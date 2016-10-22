@@ -12,10 +12,13 @@ public class Boundary {
 }
 
 
+
 public class EnemyController : MonoBehaviour {
 	// PUBLIC INSTANCE VARIABLES
 	public Speed speed;
 	public Boundary boundary;
+
+	public GameController gameController; 
 
 	// PRIVATE INSTANCE VARIABLES
 	private float _CurrentSpeed;
@@ -34,6 +37,13 @@ public class EnemyController : MonoBehaviour {
 		
 		// Check bottom boundary
 		if (currentPosition.y <= boundary.yMin) {
+			this.gameController.ScoreValue += 10;
+			this._Reset();
+		}
+	}
+	private void OnTriggerEnter2D(Collider2D other){
+		if(other.gameObject.CompareTag("Player")){
+			//this.gameController.LivesValue -= 1;
 			this._Reset();
 		}
 	}
@@ -43,5 +53,6 @@ public class EnemyController : MonoBehaviour {
 		this._CurrentSpeed = Random.Range (speed.minSpeed, speed.maxSpeed);
 		Vector2 resetPosition = new Vector2 (Random.Range(boundary.xMin, boundary.xMax), boundary.yMax);
 		gameObject.GetComponent<Transform> ().position = resetPosition;
+
 	}
 }

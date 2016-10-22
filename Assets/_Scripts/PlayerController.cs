@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
 	
 	// PRIVATE INSTANCE VARIABLES
 	private Vector2 _newPosition = new Vector2(0.0f, 0.0f);
+
+	public GameController gameController;
 	
 	// Use this for initialization
 	void Start () {
@@ -43,6 +45,13 @@ public class PlayerController : MonoBehaviour {
 		this._BoundaryCheck ();
 
 		gameObject.GetComponent<Transform>().position = this._newPosition;
+	}
+	private void OnTriggerEnter2D(Collider2D other){
+		if(other.gameObject.CompareTag("Enemy")){
+			Debug.Log ("Enemy Hit!");
+			this.gameController.LivesValue -= 1;
+
+		}
 	}
 
 	private void _BoundaryCheck() {
